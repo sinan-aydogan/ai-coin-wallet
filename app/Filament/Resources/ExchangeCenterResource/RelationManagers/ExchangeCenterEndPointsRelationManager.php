@@ -2,8 +2,12 @@
 
 namespace App\Filament\Resources\ExchangeCenterResource\RelationManagers;
 
+use App\Enums\ExchangeCenterEndPointFunctionsEnum;
+use App\Enums\ExchangeCenterEndPointTypesEnum;
+use App\Models\ExchangeCenterEndPointBaseUrl;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -36,10 +40,20 @@ class ExchangeCenterEndPointsRelationManager extends RelationManager
                     ->required(),
                 /*Borsa*/
                 Forms\Components\Select::make('exchange_center_id')
-                    ->label(trans_choice('ec.ep.model_label',1))
+                    ->label(trans_choice('ec.model_label',1))
                     ->relationship('exchangeCenter', 'name')
+                    ->live()
                     ->required(),
-
+                /*Type:Enum*/
+                Forms\Components\Select::make('type')
+                    ->label(trans('ec.ep.type'))
+                    ->options(ExchangeCenterEndPointTypesEnum::class)
+                    ->required(),
+                /*Function*/
+                Forms\Components\Select::make('function')
+                    ->label(trans('ec.ep.function'))
+                    ->options(ExchangeCenterEndPointFunctionsEnum::class)
+                    ->required(),
                 /*Method*/
                 Forms\Components\Select::make('method')
                     ->label(trans('ec.ep.method'))
@@ -51,6 +65,10 @@ class ExchangeCenterEndPointsRelationManager extends RelationManager
                         'DELETE' => 'DELETE',
                     ])
                     ->required(),
+                /*Base URL*/
+                Forms\Components\Select::make('exchange_center_end_point_base_url_id')
+                    ->label(trans_choice('ec.ep.bu.model_label',1))
+                    ->options(fn (Get $get) => ExchangeCenterEndPointBaseUrl::where('exchange_center_id', $get('exchange_center_id'))->get()->pluck('name','id')->toArray() ?? []),
                 /*URL*/
                 Forms\Components\TextInput::make('url')
                     ->label(trans('ec.ep.url'))

@@ -13,6 +13,15 @@ return [
         'name' => 'EC Endpoint Name',
         'method' => 'Method',
         'url' => 'URL Address',
+        'type' => 'Type',
+        'function' => 'Function',
+        'types' => [
+            'public' => 'Public',
+            'private' => 'Private',
+        ],
+        'functions' => [
+            'get_balance' => 'Get Balance',
+        ],
         'bu' => [
             'model_label' => 'EC End Point Base URL|EC End Point Base URLs',
             'navigation_label' => 'EC End Point Base URLs',

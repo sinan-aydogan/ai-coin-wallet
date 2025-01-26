@@ -13,6 +13,15 @@ return [
         'name' => 'Borsa API Ucu Adı',
         'method' => 'Metod',
         'url' => 'URL Adresi',
+        'type' => 'Tip',
+        'function' => 'Fonksiyon',
+        'types' => [
+            'public' => 'Genel',
+            'private' => 'Özel',
+        ],
+        'functions' => [
+            'get_balance' => 'Bakiye Bilgilerini Getir',
+        ],
         'bu' => [
             'model_label' => 'Borsa API Ucu Ana URL|Borsa API Ucu Ana URL\'leri',
             'navigation_label' => 'Borsa API Ucu Ana URL\'leri',

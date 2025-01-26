@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ExchangeCenterEndPointFunctionsEnum;
+use App\Enums\ExchangeCenterEndPointTypesEnum;
 use App\Models\ExchangeCenter;
 use App\Models\ExchangeCenterEndPoint;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -37,6 +39,8 @@ class ExchangeCenterSeeder extends Seeder
             'name' => 'Get Wallet Info',
             'method' => 'GET',
             'url' => '/account',
+            'type' => ExchangeCenterEndPointTypesEnum::Private,
+            'function' => ExchangeCenterEndPointFunctionsEnum::GetWallet,
         ]);
 
 
@@ -69,6 +73,8 @@ class ExchangeCenterSeeder extends Seeder
             'name' => 'Get Wallet Info',
             'method' => 'GET',
             'url' => '/users/balances',
+            'type' => ExchangeCenterEndPointTypesEnum::Private,
+            'function' => ExchangeCenterEndPointFunctionsEnum::GetWallet,
         ]);
     }
 }
